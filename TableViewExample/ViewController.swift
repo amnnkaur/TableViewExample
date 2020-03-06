@@ -17,11 +17,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       loadCountries()
+        //loadCountries()
+        countryName = DataStorage.getInstance().getAllCountries()
     }
 
     func loadCountries(){
-        countryName.append(Country(name: "Afghanestan", capital: "Afghanestan", flag: #imageLiteral(resourceName: "af")))
+        countryName.append(Country(name: "Afghanistan", capital: "Afghanistan", flag: #imageLiteral(resourceName: "af")))
         
         countryName.append(Country(name: "India", capital: "Delhi", flag: #imageLiteral(resourceName: "in")))
     }
@@ -48,4 +49,19 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate
       cell?.imageView?.image = country.flag
       return cell!
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(100.0)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let c = countryName[indexPath.row]
+        print(c.name)
+        
+       /* let sb = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = sb.instantiateViewController(identifier: "secondVC") as! SecondViewController
+        
+           self.navigationController?.pushViewController(secondVC, animated: true)*/
+    }
+    
 }
